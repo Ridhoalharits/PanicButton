@@ -36,7 +36,7 @@ const navLink = [
 
 const SideBar = () => {
   return (
-    <div className="bg-[#F3CE4B] text-black h-screen w-64 flex flex-col justify-between">
+    <div className="bg-[#F3CE4B] text-black h-1000 w-64 flex flex-col justify-between">
       {/* Sidebar content */}
       <div className="py-4 px-6 ">
         <div class="flex flex-row mb-24">

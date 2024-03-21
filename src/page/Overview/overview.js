@@ -2,8 +2,14 @@ import React from "react";
 import SideBar from "../../components/sidebar/SideBar";
 import StatusBox from "../../components/StatusBox/StatusBox";
 import LiveLoc from "../../components/LiveLocation/LiveLoc";
+import ShipList from "../../components/ShipList/ShipList";
+import DangerLog from "../../components/DangerLog/DangerLog";
+import dataset from "../../model/getCurrent";
+import getAllDanger from "../../model/getAllDanger";
 
 const Overview = () => {
+  const allDanger = getAllDanger();
+  console.log(allDanger);
   return (
     <div class="flex gap-3">
       <SideBar />
@@ -16,9 +22,9 @@ const Overview = () => {
           </div>
           <div class="mt-6">
             <LiveLoc />
+            <ShipList />
+            <DangerLog />
           </div>
-          <div>ship list</div>
-          <div>danger log</div>
         </div>
       </div>
     </div>

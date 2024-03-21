@@ -1,0 +1,86 @@
+{
+  "ship_data": [
+    {
+      "id": 0,
+      "ShipID": "Ridho",
+      "Data": [
+        {
+          "Latitude": "-7.2453",
+          "Longitude": "112.7378",
+          "Timestamp": "2024-03-19T12:00:00Z",
+          "BatteryIndicator": 85,
+          "Status": "safe"
+        },
+        {
+          "Latitude": "-7.2453",
+          "Longitude": "112.7378",
+          "Timestamp": "2024-03-19T12:10:00Z",
+          "BatteryIndicator": 82,
+          "Status": "safe"
+        },
+        {
+          "Latitude": "-7.2453",
+          "Longitude": "112.7378",
+          "Timestamp": "2024-03-19T12:20:00Z",
+          "BatteryIndicator": 80,
+          "Status": "safe"
+        }
+      ]
+    },
+    {
+      "id": 1,
+      "ShipID": "Iqbaal",
+      "Data": [
+        {
+          "Latitude": "-7.2026",
+          "Longitude": "112.7316",
+          "Timestamp": "2024-03-19T12:00:00Z",
+          "BatteryIndicator": 75,
+          "Status": "safe"
+        },
+        {
+          "Latitude": "-7.2026",
+          "Longitude": "112.7316",
+          "Timestamp": "2024-03-19T12:10:00Z",
+          "BatteryIndicator": 72,
+          "Status": "danger"
+        },
+        {
+          "Latitude": "-7.2026",
+          "Longitude": "112.7316",
+          "Timestamp": "2024-03-19T12:20:00Z",
+          "BatteryIndicator": 70,
+          "Status": "safe"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "ShipID": "Ecak",
+      "Data": [
+        {
+          "Latitude": "-7.2769",
+          "Longitude": "112.7548",
+          "Timestamp": "2024-03-19T12:00:00Z",
+          "BatteryIndicator": 90,
+          "Status": "safe"
+        },
+        {
+          "Latitude": "-7.2769",
+          "Longitude": "112.7548",
+          "Timestamp": "2024-03-19T12:10:00Z",
+          "BatteryIndicator": 87,
+          "Status": "danger"
+        },
+        {
+          "Latitude": "-7.2769",
+          "Longitude": "112.7548",
+          "Timestamp": "2024-03-19T12:20:00Z",
+          "BatteryIndicator": 85,
+          "Status": "danger",
+          "ShipID": "Ecak"
+        }
+      ]
+    }
+  ]
+}
