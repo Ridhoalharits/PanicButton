@@ -10,7 +10,7 @@ const currectLocation = () => {
     newestData[ship.id] = { data: newestEntry, shipID: ship.ShipID };
   });
 
-  console.log(newestData);
+  // console.log(newestData);
   return newestData;
 };
 

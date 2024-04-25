@@ -13,6 +13,13 @@ import { Icon } from "leaflet";
 import locIcon from "../../assets/icons/liveLoc.png";
 import currectLocation from "../../model/getCurrent";
 import hasil from "../../model/getCurrent";
+import Qubitro from "../../api/qubitro";
+import GetAllDevicesData, { GetAllDevices } from "../../api/getAllDevices";
+import Alldevicedata from "../../api/getAllDevices";
+import GetShipData from "../../api/getShipData";
+import HitManual from "../../api/getShipData";
+import { useState, useEffect } from "react";
+import L from "leaflet";
 // import { Icon, divIcon, point } from "leaflet";
 // import dangerIcon from "../../assets/icons/danger.png";
 
@@ -29,12 +36,9 @@ import hasil from "../../model/getCurrent";
 // });
 
 const LiveLoc = () => {
-  const ships = currectLocation();
+  const ships = HitManual();
   console.log(ships);
-  // console.log(ships[0]);
-  // ships.map((item) => {
-  //   console.log(item.data.Latitude);
-  // });
+
   return (
     <div class="bg-white border-2 border-gray rounded-lg p-8  flex flex-col mb-6">
       <div class="flex flex-row">
@@ -42,32 +46,60 @@ const LiveLoc = () => {
         <h1 class="text-black text-2xl font-semibold mb-4">Live Location</h1>
       </div>
 
-      <MapContainer
-        center={[ships[0].data.Latitude, ships[0].data.Longitude]}
-        zoom={12}
-      >
-        {/* OPEN STREEN MAPS TILES */}
-        <TileLayer
-          attribution='&copy; <a href="https://www.openstreetmap.sorg/copyright">OpenStreetMap</a> contributors'
-          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-        />
-        {/* <Polyline pathOptions={{ color: "red" }} positions={latLngs} /> */}
+      {/* <div>
+        {loading ? (
+          <p>Loading</p>
+        ) : (
+          <div>
+            {apiData.map((nestedArray, index) => (
+              <div key={index}>
+      
+                {nestedArray.map((item, innerIndex) => (
+                  <div key={innerIndex}>
+                    <p>Time: {item.time}</p>
+                    <p>Latitude: {item.data.Lat}</p>
+                    <p>Longitude: {item.data.Lon}</p>
+                    <p>Button: {item.data.Btn}</p>
+                  </div>
+                ))}
+              </div>
+            ))}
+          </div>
+        )}
+      </div> */}
 
-        {ships.map((item) => (
-          <Marker
-            position={[item.data.Latitude, item.data.Longitude]}
-            icon={
-              new Icon({
-                iconUrl: markerIconPng,
-                iconSize: [25, 41],
-                iconAnchor: [12, 41],
-              })
-            }
+      <div>
+        {ships.length == 2 ? (
+          <MapContainer
+            center={[-6.9784646, 107.63230896]}
+            zoom={13}
+            style={{ height: "400px" }}
           >
-            <Popup>{item.shipID}</Popup>
-          </Marker>
-        ))}
-      </MapContainer>
+            <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
+
+            {ships.map((nestedArray, index) => (
+              <div>
+                {nestedArray.map((item, innerIndex) => (
+                  <Marker
+                    position={[item.data.Lat, item.data.Lon]}
+                    icon={
+                      new Icon({
+                        iconUrl: markerIconPng,
+                        iconSize: [25, 41],
+                        iconAnchor: [12, 41],
+                      })
+                    }
+                  >
+                    <Popup>{item.data.Btn}</Popup>
+                  </Marker>
+                ))}
+              </div>
+            ))}
+          </MapContainer>
+        ) : (
+          <p>Loading...</p>
+        )}
+      </div>
     </div>
   );
 };

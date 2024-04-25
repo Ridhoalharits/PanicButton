@@ -6,6 +6,7 @@ import { Icon } from "leaflet";
 import "./styles.css";
 import currectLocation from "../../model/getCurrent";
 import DetailLiveLoc from "./detailLiveLoc";
+import HitManual from "../../api/getShipData";
 
 // const ships = [
 //   { name: "Kapal 1", latitude: -6.8909, longitude: 107.6105 }, // Coordinates around Telkom University
@@ -14,7 +15,8 @@ import DetailLiveLoc from "./detailLiveLoc";
 // ];
 
 const LiveLocation = () => {
-  const ships = currectLocation();
+  // const ships = currectLocation();
+  const ships = HitManual();
   return (
     <div class="flex gap-3">
       <SideBar />
@@ -22,30 +24,38 @@ const LiveLocation = () => {
         <h1 className="text-2xl font-semibold mb-4">Live Location</h1>
         <div class="items-center">
           <div class="mt-6">
-            <MapContainer
-              center={[ships[0].data.Latitude, ships[0].data.Longitude]}
-              zoom={12}
-            >
-              <TileLayer
-                attribution='&copy; <a href="https://www.openstreetmap.sorg/copyright">OpenStreetMap</a> contributors'
-                url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-              />
-
-              {ships.map((item) => (
-                <Marker
-                  position={[item.data.Latitude, item.data.Longitude]}
-                  icon={
-                    new Icon({
-                      iconUrl: markerIconPng,
-                      iconSize: [25, 41],
-                      iconAnchor: [12, 41],
-                    })
-                  }
+            <div>
+              {ships.length > 1 ? (
+                <MapContainer
+                  center={[-6.9784646, 107.63230896]}
+                  zoom={13}
+                  style={{ height: "400px" }}
                 >
-                  <Popup>{item.shipID}</Popup>
-                </Marker>
-              ))}
-            </MapContainer>
+                  <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
+
+                  {ships.map((nestedArray, index) => (
+                    <div>
+                      {nestedArray.map((item, innerIndex) => (
+                        <Marker
+                          position={[item.data.Lat, item.data.Lon]}
+                          icon={
+                            new Icon({
+                              iconUrl: markerIconPng,
+                              iconSize: [25, 41],
+                              iconAnchor: [12, 41],
+                            })
+                          }
+                        >
+                          <Popup>{item.time}</Popup>
+                        </Marker>
+                      ))}
+                    </div>
+                  ))}
+                </MapContainer>
+              ) : (
+                <p>Loading...</p>
+              )}
+            </div>
           </div>
           <DetailLiveLoc />
         </div>

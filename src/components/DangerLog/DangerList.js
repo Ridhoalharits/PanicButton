@@ -3,7 +3,7 @@ import allDanger from "../../model/getAllDanger";
 
 const DangerList = () => {
   const danger = allDanger();
-  console.log(danger);
+  // console.log(danger);
 
   const renderList = danger.map((item) => (
     <div>

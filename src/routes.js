@@ -4,6 +4,7 @@ import LiveLocation from "./page/LiveLocation/liveLocation";
 import ShipStatus from "./page/ShipStatus/shipStatus";
 import LocationLog from "./page/LocationLog/locationLog";
 import DangerLog from "./page/DangerLog/dangerLog";
+import AllData from "./api/AllData";
 
 export const router = createBrowserRouter([
   {
@@ -25,5 +26,9 @@ export const router = createBrowserRouter([
   {
     path: "/dangerlog",
     element: <DangerLog />,
+  },
+  {
+    path: "/test",
+    element: <AllData />,
   },
 ]);
