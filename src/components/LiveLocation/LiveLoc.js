@@ -69,7 +69,7 @@ const LiveLoc = () => {
       </div> */}
 
       <div>
-        {ships.length == 2 ? (
+        {ships.length === 2 ? (
           <MapContainer
             center={[-6.9784646, 107.63230896]}
             zoom={13}
