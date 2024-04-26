@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import SideBar from "../../components/sidebar/SideBar";
 import { MapContainer, Marker, TileLayer, Popup } from "react-leaflet";
 import markerIconPng from "leaflet/dist/images/marker-icon.png";
-import homeIcon from "leaflet/dist/images/homeicon.png";
+import homeicon from "../../icons/homeicon.png";
 import { Icon } from "leaflet";
 import "./styles.css";
 import HitManual from "../../api/getShipData";
@@ -82,7 +82,7 @@ const LiveLocation = () => {
                     position={referencePoint}
                     icon={
                       new Icon({
-                        iconUrl: homeIcon,
+                        iconUrl: homeicon,
                         iconSize: [25, 25],
                         iconAnchor: [25, 25],
                       })
