@@ -2,11 +2,12 @@ import React, { useState } from "react";
 import SideBar from "../../components/sidebar/SideBar";
 import { MapContainer, Marker, TileLayer, Popup } from "react-leaflet";
 import markerIconPng from "leaflet/dist/images/marker-icon.png";
+import homeIcon from "leaflet/dist/images/homeicon.png";
 import { Icon } from "leaflet";
 import "./styles.css";
-import currectLocation from "../../model/getCurrent";
-import DetailLiveLoc from "./detailLiveLoc";
 import HitManual from "../../api/getShipData";
+import { format } from "date-fns";
+import { dateFormatter } from "../../model/dateFormat";
 
 // const ships = [
 //   { name: "Kapal 1", latitude: -6.8909, longitude: 107.6105 }, // Coordinates around Telkom University
@@ -20,7 +21,7 @@ function calculateJarak(referencePoint, device) {
   const lat2 = device.data.Lat;
   const lon2 = device.data.Lon;
 
-  const earthRadiusKm = 6371; // Radius of the Earth in kilometers
+  const earthRadiusKm = 6371;
   const dLat = degreesToRadians(lat2 - lat1);
   const dLon = degreesToRadians(lon2 - lon1);
 
@@ -32,25 +33,32 @@ function calculateJarak(referencePoint, device) {
       Math.sin(dLon / 2);
 
   const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-  const distance = earthRadiusKm * c; // Distance in kilometers
-  return distance;
-  // console.log(lat1);
+  const distance = earthRadiusKm * c;
+  return distance.toFixed(2);
 }
 
 function degreesToRadians(degrees) {
   return degrees * (Math.PI / 180);
 }
 
-const LiveLocation = () => {
-  // const ships = currectLocation();
+function formatedTime(data) {
+  const nofixtime = data.time;
+  const jadi = format(nofixtime, "MMMM dd, yyyy HH:mm:ss");
 
+  return jadi;
+}
+
+const LiveLocation = () => {
   const referencePoint = [-6.968835, 107.627964];
   const [jarak, setjarak] = useState(null);
   const [selectedDevice, setSelectedDevice] = useState(null);
+  const [fixedtime, setfixedtime] = useState(null);
   const ships = HitManual();
   const handleMarkerClick = (Location) => {
     console.log(Location);
     const hasil = calculateJarak(referencePoint, Location);
+    const fixedTime = formatedTime(Location);
+    setfixedtime(fixedTime);
     setjarak(hasil);
     setSelectedDevice(Location);
   };
@@ -70,6 +78,18 @@ const LiveLocation = () => {
                   style={{ height: "400px" }}
                 >
                   <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
+                  <Marker
+                    position={referencePoint}
+                    icon={
+                      new Icon({
+                        iconUrl: homeIcon,
+                        iconSize: [25, 25],
+                        iconAnchor: [25, 25],
+                      })
+                    }
+                  >
+                    <Popup>Reference Point</Popup>
+                  </Marker>
 
                   {ships.map((nestedArray, index) => (
                     <div>
@@ -87,7 +107,7 @@ const LiveLocation = () => {
                             click: () => handleMarkerClick(item),
                           }}
                         >
-                          <Popup>{item.time}</Popup>
+                          <Popup>{dateFormatter(item.time)}</Popup>
                         </Marker>
                       ))}
                     </div>
@@ -140,10 +160,18 @@ const LiveLocation = () => {
                       </div>
                       <div className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
                         <dt className="text-sm font-medium leading-6 text-gray-900">
-                          Battery
+                          Last Updated
                         </dt>
                         <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
-                          {jarak}
+                          {fixedtime}
+                        </dd>
+                      </div>
+                      <div className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+                        <dt className="text-sm font-medium leading-6 text-gray-900">
+                          Range
+                        </dt>
+                        <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
+                          {jarak} Km
                         </dd>
                       </div>
                     </dl>

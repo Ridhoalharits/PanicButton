@@ -1,39 +1,11 @@
 import React from "react";
 import "leaflet/dist/leaflet.css";
 import "./styles.css";
-import {
-  MapContainer,
-  Marker,
-  TileLayer,
-  Popup,
-  Polyline,
-} from "react-leaflet";
+import { MapContainer, Marker, TileLayer, Popup } from "react-leaflet";
 import markerIconPng from "leaflet/dist/images/marker-icon.png";
 import { Icon } from "leaflet";
 import locIcon from "../../assets/icons/liveLoc.png";
-import currectLocation from "../../model/getCurrent";
-import hasil from "../../model/getCurrent";
-import Qubitro from "../../api/qubitro";
-import GetAllDevicesData, { GetAllDevices } from "../../api/getAllDevices";
-import Alldevicedata from "../../api/getAllDevices";
-import GetShipData from "../../api/getShipData";
 import HitManual from "../../api/getShipData";
-import { useState, useEffect } from "react";
-import L from "leaflet";
-// import { Icon, divIcon, point } from "leaflet";
-// import dangerIcon from "../../assets/icons/danger.png";
-
-// const ships = [
-//   { name: "Kapal 1", latitude: -6.8909, longitude: 107.6105 }, // Coordinates around Telkom University
-//   { name: "Kapal 2", latitude: -6.891, longitude: 107.6206 }, // Slightly adjusted coordinates
-//   { name: "Kapal 3", latitude: -6.8911, longitude: 107.6307 }, // Slightly adjusted coordinates
-// ];
-
-// const customIcon = new Icon({
-//   // iconUrl: "https://cdn-icons-png.flaticon.com/512/447/447031.png",
-//   iconUrl: require(`${dangerIcon}`),
-//   iconSize: [38, 38], // size of the icon
-// });
 
 const LiveLoc = () => {
   const ships = HitManual();
