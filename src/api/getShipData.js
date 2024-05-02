@@ -30,7 +30,7 @@ const HitManual = () => {
       }
     };
     fetchData();
-    const intervalId = setInterval(fetchData, 2000);
+    const intervalId = setInterval(fetchData, 1000);
 
     return () => {
       clearInterval(intervalId);

@@ -19,7 +19,7 @@ const Qubitro = () => {
         })
         .catch((error) => console.error("Error fetching data:", error));
     };
-    const intervalId = setInterval(fetchData, 1000);
+    const intervalId = setInterval(fetchData, 300);
 
     return () => {
       clearInterval(intervalId);
