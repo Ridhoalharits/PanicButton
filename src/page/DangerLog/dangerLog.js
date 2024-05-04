@@ -50,7 +50,7 @@ const DangerLog = () => {
                     })
                   }
                 >
-                  <Popup>{item.btn}</Popup>
+                  <Popup>{item.timestamp}</Popup>
                 </Marker>
               </div>
             ))}
