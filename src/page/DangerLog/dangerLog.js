@@ -10,10 +10,30 @@ import markerIconPng from "leaflet/dist/images/marker-icon.png";
 import { Icon } from "leaflet";
 import locIcon from "../../assets/icons/liveLoc.png";
 import HitManual from "../../api/getShipData";
+import { useState, useEffect } from "react";
 
 const DangerLog = () => {
   const data = GetDangerLog();
-  console.log(data);
+  const [filteredData, setFilteredData] = useState(data);
+  const [startDate, setStartDate] = useState("");
+  const [endDate, setEndDate] = useState("");
+
+  useEffect(() => {
+    filterData();
+  }, [startDate, endDate, data]);
+
+  const filterData = () => {
+    const filtered = data.filter((item) => {
+      const itemDate = new Date(item.timestamp).toISOString().split("T")[0];
+      return (
+        (!startDate || itemDate >= startDate) &&
+        (!endDate || itemDate <= endDate)
+      );
+    });
+    setFilteredData(filtered);
+  };
+
+  console.log(filteredData);
   const locations = data.map((item) => ({
     latitude: item.latitude,
     longitude: item.longitude,
@@ -50,11 +70,31 @@ const DangerLog = () => {
                     })
                   }
                 >
-                  <Popup>{item.timestamp}</Popup>
+                  <Popup>{dateFormatter(item.timestamp)}</Popup>
                 </Marker>
               </div>
             ))}
           </MapContainer>
+          <div>
+            <div>
+              <label>
+                Start Date:
+                <input
+                  type="date"
+                  value={startDate}
+                  onChange={(e) => setStartDate(e.target.value)}
+                />
+              </label>
+              <label>
+                End Date:
+                <input
+                  type="date"
+                  value={endDate}
+                  onChange={(e) => setEndDate(e.target.value)}
+                />
+              </label>
+            </div>
+          </div>
           <div className="mt-6 flow-root">
             <div className="inline-block min-w-full align-middle">
               <div className="rounded-lg bg-gray-50 p-2 md:pt-0">
@@ -83,7 +123,7 @@ const DangerLog = () => {
                       <p class="font-bold">Data Loading, Please Wait...</p>
                     ) : (
                       <>
-                        {data.map((item) => (
+                        {filteredData.map((item) => (
                           <>
                             <tr className="w-full border-b py-3 text-m last-of-type:border-none [&:first-child>td:first-child]:rounded-tl-lg [&:first-child>td:last-child]:rounded-tr-lg [&:last-child>td:first-child]:rounded-bl-lg [&:last-child>td:last-child]:rounded-br-lg">
                               <td className="whitespace-nowrap py-3 pl-6 pr-3">

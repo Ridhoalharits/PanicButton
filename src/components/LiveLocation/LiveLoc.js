@@ -17,29 +17,6 @@ const LiveLoc = () => {
         <img class="w-6 h-6 mr-6" src={locIcon} alt="locIcon" />
         <h1 class="text-black text-2xl font-semibold mb-4">Live Location</h1>
       </div>
-
-      {/* <div>
-        {loading ? (
-          <p>Loading</p>
-        ) : (
-          <div>
-            {apiData.map((nestedArray, index) => (
-              <div key={index}>
-      
-                {nestedArray.map((item, innerIndex) => (
-                  <div key={innerIndex}>
-                    <p>Time: {item.time}</p>
-                    <p>Latitude: {item.data.Lat}</p>
-                    <p>Longitude: {item.data.Lon}</p>
-                    <p>Button: {item.data.Btn}</p>
-                  </div>
-                ))}
-              </div>
-            ))}
-          </div>
-        )}
-      </div> */}
-
       <div>
         {ships.length === 2 ? (
           <MapContainer

@@ -1,6 +1,6 @@
 import React from "react";
 import SideBar from "../../components/sidebar/SideBar";
-import Ship1Log from "../../api/ship1log";
+// import Ship1Log from "../../api/ship1log";
 import {
   MapContainer,
   Marker,
@@ -13,10 +13,30 @@ import { Icon } from "leaflet";
 import locIcon from "../../assets/icons/liveLoc.png";
 import GetShipLog from "../../api/GetShipLog";
 import { dateFormatter } from "../../model/dateFormat";
+import { useState, useEffect } from "react";
 
 const LocationLog = () => {
-  const data = Ship1Log();
+  // const data = Ship1Log();
   const coba = GetShipLog();
+
+  const [filteredData, setFilteredData] = useState(coba);
+  const [startDate, setStartDate] = useState("");
+  const [endDate, setEndDate] = useState("");
+
+  useEffect(() => {
+    filterData();
+  }, [startDate, endDate, coba]);
+
+  const filterData = () => {
+    const filtered = coba.filter((item) => {
+      const itemDate = new Date(item.timestamp).toISOString().split("T")[0];
+      return (
+        (!startDate || itemDate >= startDate) &&
+        (!endDate || itemDate <= endDate)
+      );
+    });
+    setFilteredData(filtered);
+  };
   console.log(coba.length);
   const locations = coba.map((item) => ({
     latitude: item.latitude,
@@ -53,7 +73,26 @@ const LocationLog = () => {
         ) : (
           <p>Loading</p>
         )}
-
+        <div>
+          <div>
+            <label>
+              Start Date:
+              <input
+                type="date"
+                value={startDate}
+                onChange={(e) => setStartDate(e.target.value)}
+              />
+            </label>
+            <label>
+              End Date:
+              <input
+                type="date"
+                value={endDate}
+                onChange={(e) => setEndDate(e.target.value)}
+              />
+            </label>
+          </div>
+        </div>
         <div className="mt-6 flow-root">
           <div className="inline-block min-w-full align-middle">
             <div className="rounded-lg bg-gray-50 p-2 md:pt-0">
@@ -82,7 +121,7 @@ const LocationLog = () => {
                     <p class="font-bold">Data Loading, Please Wait...</p>
                   ) : (
                     <>
-                      {coba.map((item) => (
+                      {filteredData.map((item) => (
                         <>
                           <tr className="w-full border-b py-3 text-m last-of-type:border-none [&:first-child>td:first-child]:rounded-tl-lg [&:first-child>td:last-child]:rounded-tr-lg [&:last-child>td:first-child]:rounded-bl-lg [&:last-child>td:last-child]:rounded-br-lg">
                             <td className="whitespace-nowrap py-3 pl-6 pr-3">

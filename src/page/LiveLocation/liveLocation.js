@@ -9,12 +9,6 @@ import HitManual from "../../api/getShipData";
 import { format } from "date-fns";
 import { dateFormatter } from "../../model/dateFormat";
 
-// const ships = [
-//   { name: "Kapal 1", latitude: -6.8909, longitude: 107.6105 }, // Coordinates around Telkom University
-//   { name: "Kapal 2", latitude: -6.891, longitude: 107.6206 }, // Slightly adjusted coordinates
-//   { name: "Kapal 3", latitude: -6.8911, longitude: 107.6307 }, // Slightly adjusted coordinates
-// ];
-
 function calculateJarak(referencePoint, device) {
   const lat1 = referencePoint[0];
   const lon1 = referencePoint[1];
