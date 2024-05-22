@@ -7,28 +7,28 @@ import { Link } from "react-router-dom";
 
 const navLink = [
   {
-    name: "Overview",
+    name: "Beranda",
     icon: radarIcon,
     link: "/",
   },
 
   {
-    name: "Live Location",
+    name: "Lokasi Kapal",
     icon: loctrackIcon,
     link: "/liveloc",
   },
   {
-    name: "Ship Status",
+    name: "Status Kapal",
     icon: shipIcon,
     link: "/shipstatus",
   },
   {
-    name: "Location Log",
+    name: "Riwayat Lokasi",
     icon: locIcon,
     link: "/loclog",
   },
   {
-    name: "Danger Log",
+    name: "Riwayat Bahaya",
     icon: dangerIcon,
     link: "/dangerlog",
   },
