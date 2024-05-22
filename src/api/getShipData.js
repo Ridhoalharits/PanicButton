@@ -30,12 +30,11 @@ const HitManual = () => {
       }
     };
     fetchData();
-    const intervalId = setInterval(fetchData, 1000);
+    const intervalId = setInterval(fetchData, 2000);
 
     return () => {
       clearInterval(intervalId);
     };
-    // Call the fetchData function when component mounts
   }, []);
   return apiResults;
 };

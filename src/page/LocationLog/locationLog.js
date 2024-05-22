@@ -16,9 +16,7 @@ import { dateFormatter } from "../../model/dateFormat";
 import { useState, useEffect } from "react";
 
 const LocationLog = () => {
-  // const data = Ship1Log();
   const coba = GetShipLog();
-
   const [filteredData, setFilteredData] = useState(coba);
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
@@ -46,6 +44,7 @@ const LocationLog = () => {
   const filteredCoordinates = filteredData.map((item) => ({
     latitude: item.latitude,
     longitude: item.longitude,
+    timestamp: item.timestamp,
   }));
 
   const filteredPolyline = filteredCoordinates.map((item) => [
@@ -53,12 +52,21 @@ const LocationLog = () => {
     item.longitude,
   ]);
 
-  console.log(filteredCoordinates);
-  const coordinates = filteredData.map((location) => [
-    location.latitude,
-    location.longitude,
+  const filteredPin = filteredCoordinates.map((item) => [
+    item.latitude,
+    item.longitude,
+    item.timestamp,
   ]);
-  // console.log(locations);
+
+  const dataLength = filteredCoordinates.length;
+  const startEndPin = [
+    filteredPin[0],
+    filteredPin[dataLength - 1],
+    // filteredCoordinates[filteredCoordinates.length],
+  ];
+  console.log(startEndPin);
+
+  // console.log(filteredCoordinates);
   return (
     <div class="flex flex-row">
       <SideBar />
@@ -76,6 +84,30 @@ const LocationLog = () => {
                 attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
               />
               {/* Tambahkan marker untuk setiap lokasi */}
+
+              {startEndPin[0] !== undefined ? (
+                <div>
+                  {startEndPin.map((item, idx) => (
+                    <div>
+                      <Marker
+                        key={idx}
+                        position={item}
+                        icon={
+                          new Icon({
+                            iconUrl: markerIconPng,
+                            iconSize: [25, 41],
+                            iconAnchor: [12, 41],
+                          })
+                        }
+                      >
+                        <Popup>{dateFormatter(item[2])}</Popup>
+                      </Marker>
+                    </div>
+                  ))}
+                </div>
+              ) : (
+                <></>
+              )}
 
               <Polyline
                 pathOptions={{ color: "blue" }}

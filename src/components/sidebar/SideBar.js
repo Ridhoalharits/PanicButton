@@ -17,11 +17,11 @@ const navLink = [
     icon: loctrackIcon,
     link: "/liveloc",
   },
-  {
-    name: "Status Kapal",
-    icon: shipIcon,
-    link: "/shipstatus",
-  },
+  // {
+  //   name: "Status Kapal",
+  //   icon: shipIcon,
+  //   link: "/shipstatus",
+  // },
   {
     name: "Riwayat Lokasi",
     icon: locIcon,
