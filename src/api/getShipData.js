@@ -5,6 +5,7 @@ const HitManual = () => {
   const fetching = [
     "https://api.qubitro.com/v2/projects/b9aabf51-edf2-4885-b211-8a424cb55208/devices/d0b022b0-a221-4599-82a7-9307c21fb97f/data?page=1&limit=1&range=all",
     "https://api.qubitro.com/v2/projects/b9aabf51-edf2-4885-b211-8a424cb55208/devices/d61baf1c-29d6-45c3-a748-2b839dc612fc/data?page=1&limit=1&range=all",
+    "https://api.qubitro.com/v2/projects/b9aabf51-edf2-4885-b211-8a424cb55208/devices/f7566774-46ea-4b09-bb19-63fd19699594/data?page=1&limit=1&range=all",
   ];
   console.log(fetching);
   const [apiResults, setApiResults] = useState([]);
