@@ -9,13 +9,6 @@ const ShipList = () => {
         <img class="w-6 h-6 mr-6" src={locIcon} alt="locIcon" />
         <h1 class="text-black text-2xl font-semibold mb-4">Ship List</h1>
       </div>
-      {/* <div class="flex flex-row justify-between mb-4">
-        <h2 class="font-bold">Ship Id</h2>
-        <h2 class="font-bold">Latitude</h2>
-        <h2 class="font-bold">Longitude</h2>
-        <h2 class="font-bold">Status</h2>
-        <h2 class="font-bold">Last Updated</h2>
-      </div> */}
       <ListBox />
     </div>
   );
