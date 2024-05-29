@@ -14,7 +14,19 @@ const StatusBox = (props) => {
           <img class="w-10 h-10 mr-6" src={dangerIcon} />
           <div>
             <p class="items-center text-xl">{props.head}</p>
-            <p class="items-center text-xl">Safe</p>
+            <p class="items-center text-xl">
+              {props.status === "Safe" ? (
+                <div class="flex items-center">
+                  <div class="w-4 h-4 rounded-full bg-green-500 mr-2"></div>
+                  <div class="text-green-500">{props.status}</div>
+                </div>
+              ) : (
+                <div class="flex items-center">
+                  <div class="w-4 h-4 rounded-full bg-red-500 mr-2"></div>
+                  <div class="text-red-500 font-bold">Danger</div>
+                </div>
+              )}
+            </p>
           </div>
         </div>
       </div>

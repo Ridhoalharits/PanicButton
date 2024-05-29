@@ -8,10 +8,25 @@ import HitManual from "../../api/getShipData";
 import AllData from "../../api/AllData";
 
 const Overview = () => {
-  // const data = AllData();
-  // console.log( data );
+  let status = "Loading";
+
   const datas = HitManual();
-  console.log(datas);
+  const extractBtnData = (array) => {
+    return array
+      .flat() // Flatten the nested arrays
+      .filter((item) => item.data && item.data.hasOwnProperty("Btn")) // Filter objects containing `btn` property
+      .map((item) => item.data.Btn); // Map to `btn` values
+  };
+
+  const btnData = extractBtnData(datas);
+  console.log("hasilnya adalah", btnData);
+  if (btnData.includes(1)) {
+    status = "Danger";
+  } else {
+    status = "Safe";
+  }
+
+  // Output: [0, 1]
   return (
     <div class="flex gap-3">
       <SideBar />
@@ -19,7 +34,7 @@ const Overview = () => {
         <h1 className="text-2xl font-semibold mb-4">Overview</h1>
         <div class="items-center">
           <div class="grid gap-4 grid-cols-2">
-            <StatusBox head="Overall Status" />
+            <StatusBox head="Overall Status" status={status} />
           </div>
           <div class="mt-6">
             <LiveLoc />
