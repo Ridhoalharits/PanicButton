@@ -132,15 +132,23 @@ const LiveLocation = () => {
                         <dt className="text-sm font-medium leading-6 text-gray-900">
                           Ship ID
                         </dt>
-                        <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
-                          Margot Foster
+                        <dd className="mt-1 text-sm text-gray-700  bg-yellow-300 p-4 rounded-lg font-bold">
+                          Kapal 1
+                        </dd>
+                      </div>
+                      <div className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+                        <dt className="text-sm font-medium leading-6 text-gray-900">
+                          Range
+                        </dt>
+                        <dd className="mt-1 text-sm text-gray-700  bg-yellow-300 p-4 rounded-lg font-bold">
+                          {jarak} Km
                         </dd>
                       </div>
                       <div className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
                         <dt className="text-sm font-medium leading-6 text-gray-900">
                           Latitude
                         </dt>
-                        <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
+                        <dd className="mt-1 text-sm text-gray-700  bg-yellow-300 p-4 rounded-lg font-bold">
                           {selectedDevice.data.Lat}
                         </dd>
                       </div>
@@ -148,7 +156,7 @@ const LiveLocation = () => {
                         <dt className="text-sm font-medium leading-6 text-gray-900">
                           Longitude
                         </dt>
-                        <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
+                        <dd className="mt-1 text-sm text-gray-700  bg-yellow-300 p-4 rounded-lg font-bold">
                           {selectedDevice.data.Lon}
                         </dd>
                       </div>
@@ -156,16 +164,8 @@ const LiveLocation = () => {
                         <dt className="text-sm font-medium leading-6 text-gray-900">
                           Last Updated
                         </dt>
-                        <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
+                        <dd className="mt-1 text-sm text-gray-700  bg-yellow-300 p-4 rounded-lg font-bold">
                           {fixedtime}
-                        </dd>
-                      </div>
-                      <div className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
-                        <dt className="text-sm font-medium leading-6 text-gray-900">
-                          Range
-                        </dt>
-                        <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
-                          {jarak} Km
                         </dd>
                       </div>
                     </dl>
