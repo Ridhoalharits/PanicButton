@@ -47,7 +47,7 @@ const DangerLog = () => {
     <div class="flex flex-row">
       <SideBar />
       <div className="m-8 gap-3">
-        <h1 className="text-2xl font-semibold mb-4">Danger Log</h1>
+        <h1 className="text-2xl font-semibold mb-4">Riwayat Bahaya</h1>
 
         {data.length !== 0 ? (
           <div class="mt-8">
@@ -82,7 +82,7 @@ const DangerLog = () => {
             <div>
               <div className=" mt-6 grid gap-4 grid-cols-2">
                 <label>
-                  Start Date:
+                  Tanggal Awal :
                   <input
                     type="date"
                     value={startDate}
@@ -91,7 +91,7 @@ const DangerLog = () => {
                   />
                 </label>
                 <label>
-                  End Date:
+                  Tanggal Akhir :
                   <input
                     type="date"
                     value={endDate}
@@ -100,7 +100,15 @@ const DangerLog = () => {
                   />
                 </label>
               </div>
-              <p>{filteredData.length} data found</p>
+              {filteredData.length === 0 ? (
+                <h2 className="mt-4 font-semibold text-red-600">
+                  {filteredData.length} Data Ditemukan
+                </h2>
+              ) : (
+                <h2 className="mt-4 font-semibold text-green-600">
+                  {filteredData.length} Data Ditemukan
+                </h2>
+              )}
             </div>
             <div className="mt-6 flow-root">
               <div className="inline-block min-w-full align-middle">
@@ -127,7 +135,7 @@ const DangerLog = () => {
                           Status
                         </th>
                         <th scope="col" className="px-3 py-5 font-bold text-lg">
-                          Last Update
+                          Waktu
                         </th>
                       </tr>
                     </thead>

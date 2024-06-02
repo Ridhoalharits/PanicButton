@@ -12,7 +12,7 @@ const DangerLog = () => {
     <div class="bg-white border-2 border-gray rounded-lg p-8  flex flex-col mb-3">
       <div class="flex flex-row">
         <img class="w-6 h-6 mr-6" src={locIcon} alt="locIcon" />
-        <h1 class="text-black text-2xl font-semibold mb-4">Danger Log</h1>
+        <h1 class="text-black text-2xl font-semibold mb-4">Riwayat Bahaya</h1>
       </div>
 
       <div className="mt-6 flow-root">
@@ -34,7 +34,7 @@ const DangerLog = () => {
                     Status
                   </th>
                   <th scope="col" className="px-3 py-5 font-bold text-lg">
-                    Last Update
+                    Waktu
                   </th>
                 </tr>
               </thead>

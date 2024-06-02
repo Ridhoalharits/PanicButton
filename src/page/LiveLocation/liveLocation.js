@@ -61,7 +61,7 @@ const LiveLocation = () => {
     <div class="flex gap-3">
       <SideBar />
       <div class="m-8">
-        <h1 className="text-2xl font-semibold mb-4">Live Location</h1>
+        <h1 className="text-2xl font-semibold mb-4">Lokasi Terkini</h1>
         <div class="items-center">
           <div class="mt-6">
             <div>
@@ -117,14 +117,14 @@ const LiveLocation = () => {
               <div>
                 <div className="px-4 sm:px-0">
                   <h1 class="text-black text-2xl font-semibold mb-4">
-                    Ship Information
+                    Informasi Kapal
                   </h1>
                   <p className="mt-1 max-w-2xl text-sm leading-6 text-gray-500">
-                    Detail Information from the ship
+                    Informasi Detil tentang kapal
                   </p>
                 </div>
                 {selectedDevice == null ? (
-                  <p>Select Ship to Show the data</p>
+                  <p>Klik lokasi kapal untuk menampilkan data</p>
                 ) : (
                   <div className="mt-6 border-t border-gray-100">
                     <dl className="divide-y divide-gray-100">
@@ -162,7 +162,7 @@ const LiveLocation = () => {
                       </div>
                       <div className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
                         <dt className="text-sm font-medium leading-6 text-gray-900">
-                          Last Updated
+                          Waktu Terkahir
                         </dt>
                         <dd className="mt-1 text-sm text-gray-700  bg-yellow-300 p-4 rounded-lg font-bold">
                           {fixedtime}

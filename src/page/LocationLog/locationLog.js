@@ -71,7 +71,7 @@ const LocationLog = () => {
     <div class="flex flex-row">
       <SideBar />
       <div className="mt-8 ml-8 flex flex-col gap-3">
-        <h1 className="text-2xl font-semibold mb-4">Location Log</h1>
+        <h1 className="text-2xl font-semibold mb-4">Riwayat Lokasi</h1>
         {locations.length !== 0 ? (
           <div>
             {/* Contoh menggunakan Leaflet untuk pemetaan */}
@@ -118,7 +118,7 @@ const LocationLog = () => {
               <div>
                 <div className="mt-6 grid gap-4 grid-cols-2">
                   <label>
-                    Start Date:
+                    Tanggal Awal :
                     <input
                       type="date"
                       value={startDate}
@@ -127,7 +127,7 @@ const LocationLog = () => {
                     />
                   </label>
                   <label>
-                    End Date:
+                    Tanggal Akhir :
                     <input
                       type="date"
                       value={endDate}
@@ -137,7 +137,15 @@ const LocationLog = () => {
                   </label>
                 </div>
 
-                <h2 className="mt-4">{filteredData.length} data found</h2>
+                {filteredData.length === 0 ? (
+                  <h2 className="mt-4 font-semibold text-red-600">
+                    {filteredData.length} Data Ditemukan
+                  </h2>
+                ) : (
+                  <h2 className="mt-4 font-semibold text-green-600">
+                    {filteredData.length} Data Ditemukan
+                  </h2>
+                )}
                 <div className="mt-6 flow-root">
                   <div className="inline-block min-w-full align-middle">
                     <div className="rounded-lg bg-gray-50 p-2 md:pt-0">
@@ -172,7 +180,7 @@ const LocationLog = () => {
                               scope="col"
                               className="px-3 py-5 font-bold text-lg"
                             >
-                              Last Update
+                              Waktu
                             </th>
                           </tr>
                         </thead>
