@@ -15,7 +15,7 @@ const StatusBox = (props) => {
           <div>
             <p class="items-center text-xl">{props.head}</p>
             <p class="items-center text-xl">
-              {props.status === "Safe" ? (
+              {props.status === "Aman" ? (
                 <div class="flex items-center">
                   <div class="w-4 h-4 rounded-full bg-green-500 mr-2"></div>
                   <div class="text-green-500">{props.status}</div>
