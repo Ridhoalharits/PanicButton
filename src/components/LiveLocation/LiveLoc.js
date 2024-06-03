@@ -39,7 +39,7 @@ const LiveLoc = () => {
                       })
                     }
                   >
-                    <Popup>{item.data.Btn}</Popup>
+                    <Popup>Kapal {index + 1}</Popup>
                   </Marker>
                 ))}
               </div>
