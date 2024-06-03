@@ -23,7 +23,7 @@ const StatusBox = (props) => {
               ) : (
                 <div class="flex items-center">
                   <div class="w-4 h-4 rounded-full bg-red-500 mr-2"></div>
-                  <div class="text-red-500 font-bold">Danger</div>
+                  <div class="text-red-500 font-bold">{props.status}</div>
                 </div>
               )}
             </p>
