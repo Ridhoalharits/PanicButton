@@ -43,7 +43,7 @@ function formatedTime(data) {
 }
 
 const LiveLocation = () => {
-  const referencePoint = [-6.968835, 107.627964];
+  const referencePoint = [-7.149597, 112.655691];
   const [jarak, setjarak] = useState(null);
   const [selectedDevice, setSelectedDevice] = useState(null);
   const [fixedtime, setfixedtime] = useState(null);
@@ -67,7 +67,7 @@ const LiveLocation = () => {
             <div>
               {ships.length > 1 ? (
                 <MapContainer
-                  center={[-6.9784646, 107.63230896]}
+                  center={referencePoint}
                   zoom={13}
                   style={{ height: "400px" }}
                 >
