@@ -10,7 +10,6 @@ import {
 } from "react-leaflet";
 import markerIconPng from "leaflet/dist/images/marker-icon.png";
 import { Icon } from "leaflet";
-import load from "../../icons/load.png";
 import GetShipLog from "../../api/GetShipLog";
 import { dateFormatter } from "../../model/dateFormat";
 import { useState, useEffect } from "react";

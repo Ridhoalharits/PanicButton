@@ -5,7 +5,6 @@ import LiveLoc from "../../components/LiveLocation/LiveLoc";
 import ShipList from "../../components/ShipList/ShipList";
 import DangerLog from "../../components/DangerLog/DangerLog";
 import HitManual from "../../api/getShipData";
-import AllData from "../../api/AllData";
 
 const Overview = () => {
   let status = "Loading";

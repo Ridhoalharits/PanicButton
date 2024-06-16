@@ -1,6 +1,12 @@
 import React, { useState } from "react";
 import SideBar from "../../components/sidebar/SideBar";
-import { MapContainer, Marker, TileLayer, Popup } from "react-leaflet";
+import {
+  MapContainer,
+  Marker,
+  TileLayer,
+  Popup,
+  Polyline,
+} from "react-leaflet";
 import markerIconPng from "leaflet/dist/images/marker-icon.png";
 import homeicon from "../../icons/homeicon.png";
 import { Icon } from "leaflet";
@@ -8,6 +14,12 @@ import "./styles.css";
 import HitManual from "../../api/getShipData";
 import { format } from "date-fns";
 import { dateFormatter } from "../../model/dateFormat";
+import { getHeading } from "../../model/getHeading";
+
+const formatTime = (isoString) => {
+  const date = new Date(isoString);
+  return format(date, "MMMM dd, yyyy  HH:mm:ss");
+};
 
 function calculateJarak(referencePoint, device) {
   const lat1 = referencePoint[0];
@@ -45,13 +57,17 @@ function formatedTime(data) {
 const LiveLocation = () => {
   const referencePoint = [-7.149597, 112.655691];
   const [jarak, setjarak] = useState(null);
+  const [heading, setHeading] = useState(null);
   const [selectedDevice, setSelectedDevice] = useState(null);
   const [fixedtime, setfixedtime] = useState(null);
   const ships = HitManual();
+  const showLine = [referencePoint];
   const handleMarkerClick = (Location) => {
     console.log(Location);
     const hasil = calculateJarak(referencePoint, Location);
+    const arah = getHeading(referencePoint, Location);
     const fixedTime = formatedTime(Location);
+    setHeading(arah);
     setfixedtime(fixedTime);
     setjarak(hasil);
     setSelectedDevice(Location);
@@ -101,7 +117,16 @@ const LiveLocation = () => {
                             click: () => handleMarkerClick(item),
                           }}
                         >
-                          <Popup>{dateFormatter(item.time)}</Popup>
+                          <Popup>Kapal {index + 1}</Popup>
+
+                          {selectedDevice != null ? (
+                            <Polyline
+                              pathOptions={{ color: "blue" }}
+                              positions={[referencePoint]}
+                            />
+                          ) : (
+                            <></>
+                          )}
                         </Marker>
                       ))}
                     </div>
@@ -112,6 +137,7 @@ const LiveLocation = () => {
               )}
             </div>
           </div>
+
           <div class="bg-white border-2 border-gray rounded-lg p-8 flex flex-col mb-3 mt-6">
             <div class="flex flex-row">
               <div>
@@ -133,8 +159,23 @@ const LiveLocation = () => {
                           Ship ID
                         </dt>
                         <dd className="mt-1 text-sm text-gray-700  bg-yellow-300 p-4 rounded-lg font-bold">
-                          Kapal 1
+                          Kapal {selectedDevice.data.Btn}
                         </dd>
+                      </div>
+                      <div className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+                        <dt className="text-sm font-medium leading-6 text-gray-900">
+                          Status
+                        </dt>
+
+                        {selectedDevice.data.Btn == "0" ? (
+                          <dd className="mt-1 text-sm text-white bg-green-700 p-4 rounded-lg font-bold">
+                            Safe
+                          </dd>
+                        ) : (
+                          <dd className="mt-1 text-sm text-white  bg-red-800 p-4 rounded-lg font-bold">
+                            Danger
+                          </dd>
+                        )}
                       </div>
                       <div className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
                         <dt className="text-sm font-medium leading-6 text-gray-900">
@@ -142,6 +183,14 @@ const LiveLocation = () => {
                         </dt>
                         <dd className="mt-1 text-sm text-gray-700  bg-yellow-300 p-4 rounded-lg font-bold">
                           {jarak} Km
+                        </dd>
+                      </div>
+                      <div className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+                        <dt className="text-sm font-medium leading-6 text-gray-900">
+                          Heading
+                        </dt>
+                        <dd className="mt-1 text-sm text-gray-700  bg-yellow-300 p-4 rounded-lg font-bold">
+                          {heading}°
                         </dd>
                       </div>
                       <div className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
