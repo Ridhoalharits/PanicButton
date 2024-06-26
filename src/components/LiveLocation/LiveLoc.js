@@ -20,7 +20,7 @@ const LiveLoc = () => {
       <div>
         {ships.length === 3 ? (
           <MapContainer
-            center={[-7.149597, 112.655691]}
+            center={[-6.96928787, 107.62825012]}
             zoom={13}
             style={{ height: "400px" }}
           >

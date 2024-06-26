@@ -55,7 +55,7 @@ function formatedTime(data) {
 }
 
 const LiveLocation = () => {
-  const referencePoint = [-7.149597, 112.655691];
+  const referencePoint = [-6.96928787, 107.62825012];
   const [jarak, setjarak] = useState(null);
   const [heading, setHeading] = useState(null);
   const [selectedDevice, setSelectedDevice] = useState(null);
@@ -159,7 +159,7 @@ const LiveLocation = () => {
                           Ship ID
                         </dt>
                         <dd className="mt-1 text-sm text-gray-700  bg-yellow-300 p-4 rounded-lg font-bold">
-                          Kapal {selectedDevice.data.Btn}
+                          Kapal {selectedDevice.data.Btn + 1}
                         </dd>
                       </div>
                       <div className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">

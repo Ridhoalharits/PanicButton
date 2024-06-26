@@ -19,6 +19,7 @@ const LocationLog = () => {
   const [filteredData, setFilteredData] = useState(coba);
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
+  const [centerMap, setCenterMap] = useState([-6.96928787, 107.62825012]);
 
   useEffect(() => {
     filterData();
@@ -33,8 +34,9 @@ const LocationLog = () => {
       );
     });
     setFilteredData(filtered);
+
+    // setCenterMap([filterData[0]])
   };
-  // console.log(filteredData);
   const locations = coba.map((item) => ({
     latitude: item.latitude,
     longitude: item.longitude,
@@ -63,7 +65,7 @@ const LocationLog = () => {
     filteredPin[dataLength - 1],
     // filteredCoordinates[filteredCoordinates.length],
   ];
-  console.log(startEndPin);
+  // console.log(startEndPin);
 
   // console.log(filteredCoordinates);
   return (
@@ -75,7 +77,8 @@ const LocationLog = () => {
           <div>
             {/* Contoh menggunakan Leaflet untuk pemetaan */}
             <MapContainer
-              center={[locations[0].latitude, locations[0].longitude]}
+              // center={[locations[0].latitude, locations[0].longitude]}
+              center={centerMap}
               zoom={15}
             >
               <TileLayer
@@ -167,7 +170,7 @@ const LocationLog = () => {
                               scope="col"
                               className="px-3 py-5 font-bold text-lg"
                             >
-                              Longiture
+                              Longitude
                             </th>
                             <th
                               scope="col"
