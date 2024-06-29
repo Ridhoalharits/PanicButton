@@ -2,6 +2,8 @@ import React from "react";
 import currectLocation from "../../model/getCurrent";
 import HitManual from "../../api/getShipData";
 import { format } from "date-fns";
+import getRange from "../../model/getRange";
+import getLastUpdate from "../../model/getLastUpdate";
 
 const formatTime = (isoString) => {
   const date = new Date(isoString);
@@ -10,6 +12,7 @@ const formatTime = (isoString) => {
 
 const ListBox = () => {
   const datas = HitManual();
+  const referencePoint = [-6.96928787, 107.62825012];
   console.log(datas);
   // const renderList = datas.map((nestedArray, index) => (
   //   <div class="bg-white border-2 border-gray rounded-lg p-2  flex flex-col mt-2">
@@ -59,6 +62,9 @@ const ListBox = () => {
                 <th scope="col" className="px-3 py-5 font-bold text-lg">
                   Waktu
                 </th>
+                <th scope="col" className="px-3 py-5 font-bold text-lg">
+                  Sail
+                </th>
               </tr>
             </thead>
             <tbody className="bg-white">
@@ -98,7 +104,30 @@ const ListBox = () => {
                             )}
                           </td>
                           <td className="whitespace-nowrap px-3 py-3">
-                            {formatTime(item.time)}
+                            {/* {formatTime(item.time)} */}
+                            {getLastUpdate(item.time)}
+                          </td>
+                          <td className="whitespace-nowrap py-3 pl-6 pr-3">
+                            <div className="flex items-center gap-3">
+                              {getRange(referencePoint, [
+                                item.data.Lat,
+                                item.data.Lon,
+                              ]) === "Sailing" ? (
+                                <p className="bg-yellow-300 p-2 rounded-xl text-white ">
+                                  {getRange(referencePoint, [
+                                    item.data.Lat,
+                                    item.data.Lon,
+                                  ])}
+                                </p>
+                              ) : (
+                                <p className="bg-blue-500 p-2 rounded-xl text-white  ">
+                                  {getRange(referencePoint, [
+                                    item.data.Lat,
+                                    item.data.Lon,
+                                  ])}
+                                </p>
+                              )}
+                            </div>
                           </td>
                         </tr>
                       ))}
